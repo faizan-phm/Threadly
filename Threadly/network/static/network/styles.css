@@ -1,0 +1,265 @@
+html, body {
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: white
+}
+.post {
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    background: #f9f9f9;
+}
+.card-header a {
+    text-decoration: none;
+    color: white;
+
+
+}
+
+.card-text {
+    padding: 10px;
+    min-height: 100px;
+    align-items: center !important;
+    display: flex;
+
+}
+.card-footer {
+    font-size: small;
+    color: #7a7a7a;
+}
+#content {
+    border: none !important;
+    border-bottom: 1px solid #15899b !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+}
+.likebtn,
+.likebtn:focus,
+.likebtn:active {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent;
+}
+#allposts > .post {
+    max-width: 600px;
+    width: 100%;
+}
+#followbtn:focus, #followbtn:active {
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+.auth-card {
+    border-radius: 18px;
+    border: none;
+    background: #f8fcfd;
+}
+
+.auth-card h2 {
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.form-floating > .form-control:focus {
+    border-color: #15899b;
+    box-shadow: 0 0 0 0.2rem rgba(21,137,155,.15);
+}
+
+.btn-info {
+    background-color: #15899b !important;
+    border: none !important;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.btn-info:hover {
+    background-color: #0e5e63 !important;
+}
+
+.form-floating label {
+    color: #15899b;
+    font-weight: 500;
+}
+
+/* Scope validity borders to validated state to avoid initial red outlines */
+.was-validated .form-control:valid,
+.form-control.is-valid {
+    border-color: #28a745;
+}
+
+.was-validated .form-control:invalid,
+.form-control.is-invalid {
+    border-color: #dc3545;
+}
+
+#followbtn {
+    font-size: small;
+}
+.navbar {
+    background-color: #15899b;
+}
+.navbar {
+    position: relative;
+    z-index: 4000; /* ensure navbar menus are above page content */
+}
+.navbar .container-fluid {
+    position: relative;
+}
+.feeds-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.btntoggle {
+    background-color: #15899b !important;
+    color: white !important;
+
+}
+.btntoggle:hover, .btntoggle:active {
+    background-color: #0e5e63 !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+#postbtn {
+    background-color: #15899b !important;
+    color: white !important;
+    font-size: small !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+.likecount {
+    font-size: small;
+    color: #7a7a7a;
+}
+.navbar-brand {
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+}
+.navbar-brand:hover {
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+}
+svg {
+    color: red;
+    border: none;
+}
+.card-header {
+    background-color: #15899b;
+    border-radius: 12px 12px 0 0 !important;
+}
+.card-header a:hover {
+    text-decoration: underline;
+    
+}
+.dropdown-menu {
+    background-color: #000000cc;
+    border-radius: 6px;
+    
+}
+
+/* Ensure navbar dropdown overlays content like textarea below */
+.navbar .dropdown-menu {
+    z-index: 3000 !important; /* above textareas and content */
+    pointer-events: auto;
+}
+
+/* When any dropdown is open, prevent underlying textareas from intercepting clicks */
+body.dropdown-open textarea,
+body.dropdown-open .form-control[type="text"],
+body.dropdown-open .form-control[type="email"],
+body.dropdown-open .form-control[type="password"],
+body.dropdown-open .form-control {
+    pointer-events: none !important;
+}
+
+/* Add a transparent overlay above content while dropdown is open to block underlying inputs */
+body.dropdown-open::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2990; /* below navbar dropdown (3000), above page content */
+    background: transparent;
+}
+
+/* In case the textarea overlaps, disable pointer events beneath the open menu */
+.navbar .dropdown.show ~ * {
+    pointer-events: none;
+}
+
+/* Smooth open animation for dropdowns */
+@keyframes dropdownFadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown-menu.show {
+    animation: dropdownFadeIn 160ms ease-out;
+    right: 0 !important;
+    left: auto !important;
+    transform-origin: top right;
+}
+.abcon {
+    z-index: 0 !important;
+}
+/* Force right alignment and suppress Popper shifts for static per-post dropdowns */
+.post .card-header .dropdown[data-display="static"] .dropdown-menu {
+    right: 0 !important;
+    left: auto !important;
+    top: calc(100% + 4px) !important; /* place just below the toggle */
+}
+.post .card-header .dropdown[data-display="static"] .dropdown-menu.show {
+    /* Prevent Popper translate3d from causing jump */
+    transform: none !important;
+    animation: dropdownFadeOpacity 140ms ease-out;
+}
+
+@keyframes dropdownFadeOpacity {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+    background-color: rgb(78, 78, 78) !important;
+    color: white;
+    text-decoration: none !important;
+}
+.dropdown-item {
+    color: white;
+}
+
+/* Prevent layout shift when hovering the per-post dropdown button */
+.post .card-header .dropdown .btn,
+.post .card-header .dropdown .btn:hover,
+.post .card-header .dropdown .btn:focus,
+.post .card-header .dropdown .btn:active {
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    padding: 4px 8px; /* fixed padding to avoid reflow */
+    min-width: 28px;
+    min-height: 28px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ensure per-post dropdown can overflow header and appear above card */
+.post {
+    position: relative;
+}
+.post .card-header {
+    overflow: visible;
+}
+.post .dropdown-menu {
+    z-index: 2500; /* above card content */
+}

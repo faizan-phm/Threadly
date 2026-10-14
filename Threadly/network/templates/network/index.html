@@ -1,0 +1,31 @@
+{% extends 'network/layout.html' %}
+
+{% block body %}
+  <div class="container abcon mt-5 d-flex align-items-center justify-content-center">
+    <div class="row w-100 justify-content-center">
+      <div class="col-5">
+        <form novalidate id="newpost">
+          <div class="form-floating">
+            {% csrf_token %}
+            <textarea id="content" class="form-control form-control-md" name="content" required placeholder="What's on your mind!?"></textarea>
+            <label class="text-secondary" for="content">What's on your mind!?</label>
+            <div class="invalid-feedback">Please write something before posting.</div>
+            
+          </div>
+          {% if user.is_authenticated %}
+            <button id="postbtn" class="btn btn-info mt-2 py-1 px-3 text-white" type="submit">Post</button>
+          {% else %}
+            <strong>You have to login in first*</strong>
+            <a class="btn btn-danger py-1 px-3 mt-2 text-white" href="{% url 'login' %}">Log In</a>
+          {% endif %}
+        </form>
+      </div>
+      <div class="col-12 d-flex justify-content-center">
+        <div id="allposts" data-type="all" class="col-5">
+          {% include 'network/partial_posts_list.html' %}
+        </div>
+        <div id="loading" style="display:none;">Loading...</div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

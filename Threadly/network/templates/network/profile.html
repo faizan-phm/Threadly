@@ -1,0 +1,55 @@
+{% extends 'network/layout.html' %}
+
+{% block body %}
+  <div class="container abcon mt-5">
+    <div class="row justify-content-center">
+      <div class="col-6">
+        <div class="card text-center mb-4">
+          <div class="card-body abcon">
+            <h3 class="card-title mb-3">{{ profile_user.username }}</h3>
+            <div class="d-flex justify-content-between align-items-center w-100 mb-2 px-2">
+              <div class="text-left">
+                <div class="font-weight-bold ">Followers</div>
+                <div id="followercount" class="text-center">{{ followers_count }}</div>
+              </div>
+              
+              <div class="text-center">
+                <div class="font-weight-bold">Following</div>
+                <div id="followingcount" class="text-center">{{ following_count }}</div>
+              </div>
+              <div class="text-right">
+                <div class="font-weight-bold">Hearts</div>
+                <div id="likestotal" class="text-center">{{ likes_total }}</div>
+              </div>
+            </div>
+            {% if profile_user.username != request.user.username %}
+              <button id="followbtn" class="btn py-1 px-4 mt-2" data-username="{{ profile_user.username }}">
+                {% if existing %}
+                  Following
+                {% else %}
+                  Follow
+                {% endif %}
+              </button>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6">
+        <ul class="nav nav-tabs mb-3" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="tab-posts" data-bs-toggle="tab" data-tab="profile" type="button" role="tab">Posts</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="tab-likes" data-bs-toggle="tab" data-tab="likes" type="button" role="tab">Likes</button>
+          </li>
+        </ul>
+        <div id="allposts" data-type="profile" class="d-flex flex-column align-items-center w-100">
+          {% include 'network/partial_posts_list.html' %}
+        </div>
+        <div id="loading" style="display:none;">Loading...</div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
